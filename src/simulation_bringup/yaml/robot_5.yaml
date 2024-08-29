@@ -1,0 +1,12 @@
+systems:
+    server: { type: ros2, domain: 0, node_name: "domain_id_change_server_5" }
+    client: { type: ros2, domain: 6, node_name: "domain_id_change_client_5" }
+
+routes:
+    client_to_server: { from: client, to: server }
+    server_to_client: { from: server, to: client }
+
+topics:
+    /robot_5/cmd_vel: { type: "geometry_msgs/Twist", route: client_to_server }
+    /robot_5/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_client }
+    /robot_5/livox/imu: { type: "sensor_msgs/Imu", route: server_to_client }

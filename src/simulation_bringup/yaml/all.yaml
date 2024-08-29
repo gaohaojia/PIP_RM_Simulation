@@ -1,0 +1,39 @@
+systems:
+    server: { type: ros2, domain: 0, node_name: "domain_id_change_server" }
+    robot_0_client: { type: ros2, domain: 1, node_name: "domain_id_change_client_0" }
+    robot_1_client: { type: ros2, domain: 2, node_name: "domain_id_change_client_1" }
+    robot_2_client: { type: ros2, domain: 3, node_name: "domain_id_change_client_2" }
+    robot_3_client: { type: ros2, domain: 4, node_name: "domain_id_change_client_3" }
+    robot_4_client: { type: ros2, domain: 5, node_name: "domain_id_change_client_4" }
+
+routes:
+    robot_0_to_server: { from: robot_0_client, to: server }
+    robot_1_to_server: { from: robot_1_client, to: server }
+    robot_2_to_server: { from: robot_2_client, to: server }
+    robot_3_to_server: { from: robot_3_client, to: server }
+    robot_4_to_server: { from: robot_4_client, to: server }
+
+    server_to_robot_0: { from: server, to: robot_0_client }
+    server_to_robot_1: { from: server, to: robot_1_client }
+    server_to_robot_2: { from: server, to: robot_2_client }
+    server_to_robot_3: { from: server, to: robot_3_client }
+    server_to_robot_4: { from: server, to: robot_4_client }
+
+topics:
+    /robot_0/cmd_vel: { type: "geometry_msgs/Twist", route: robot_0_to_server }
+    /robot_1/cmd_vel: { type: "geometry_msgs/Twist", route: robot_1_to_server }
+    /robot_2/cmd_vel: { type: "geometry_msgs/Twist", route: robot_2_to_server }
+    /robot_3/cmd_vel: { type: "geometry_msgs/Twist", route: robot_3_to_server }
+    /robot_4/cmd_vel: { type: "geometry_msgs/Twist", route: robot_4_to_server }
+
+    /robot_0/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_robot_0 }
+    /robot_1/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_robot_1 }
+    /robot_2/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_robot_2 }
+    /robot_3/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_robot_3 }
+    /robot_4/livox/lidar: { type: "livox_ros_driver2/CustomMsg", route: server_to_robot_4 }
+
+    /robot_0/livox/imu: { type: "sensor_msgs/Imu", route: server_to_robot_0 }
+    /robot_1/livox/imu: { type: "sensor_msgs/Imu", route: server_to_robot_1 }
+    /robot_2/livox/imu: { type: "sensor_msgs/Imu", route: server_to_robot_2 }
+    /robot_3/livox/imu: { type: "sensor_msgs/Imu", route: server_to_robot_3 }
+    /robot_4/livox/imu: { type: "sensor_msgs/Imu", route: server_to_robot_4 }
