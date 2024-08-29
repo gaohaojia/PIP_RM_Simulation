@@ -13,7 +13,7 @@ https://gitee.com/SMBU-POLARBEAR/pb_rm_simulation
 ![仿真效果图](/docs/gazebo.png)
 
 ## 项目优势
-通过设置不同的 ROS_DOMAIN_ID 来隔离各个兵种的导航算法，保证各个兵种 ROS Topic 和 TF 树不会互相干扰。\
+通过设置不同的 ROS_DOMAIN_ID 来隔离各个兵种的导航算法，保证各个兵种 ROS Topic 和 TF 树不会互相干扰。
 
 ## 快速开始
 1. Ubuntu 22.04 系统
