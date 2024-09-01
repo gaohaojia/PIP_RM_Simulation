@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <cstring>
 #include <functional>
+#include <geometry_msgs/msg/detail/twist__struct.hpp>
 #include <memory>
 #include <rclcpp/qos.hpp>
 #include <rclcpp/serialization.hpp>
@@ -28,7 +29,7 @@ CommunicationClientNode::CommunicationClientNode(const rclcpp::NodeOptions & opt
     "/robot_" + std::to_string(robot_id) + "/livox/imu",
     5,
     std::bind(&CommunicationClientNode::LivoxImuCallBack, this, std::placeholders::_1));
-  cmd_vel_sub_ = this->create_subscription<geometry_msgs::msg::TwistStamped>(
+  cmd_vel_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
     "cmd_vel",
     5,
     std::bind(&CommunicationClientNode::CmdVelCallBack, this, std::placeholders::_1));
@@ -52,10 +53,9 @@ void CommunicationClientNode::LivoxImuCallBack(
 }
 
 void CommunicationClientNode::CmdVelCallBack(
-  const geometry_msgs::msg::TwistStamped::ConstSharedPtr cmd_vel_msg)
+  const geometry_msgs::msg::Twist::ConstSharedPtr cmd_vel_msg)
 {
-  geometry_msgs::msg::Twist twist = cmd_vel_msg->twist;
-  cmd_vel_pub_->publish(twist);
+  cmd_vel_pub_->publish(*cmd_vel_msg);
 }
 
 } // namespace communication_client

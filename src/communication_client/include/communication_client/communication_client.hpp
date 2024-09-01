@@ -34,11 +34,11 @@ private:
 
   void LivoxScanCallBack(const livox_ros_driver2::msg::CustomMsg::ConstSharedPtr livox_scan_msg);
   void LivoxImuCallBack(const sensor_msgs::msg::Imu::ConstSharedPtr livox_imu_msg);
-  void CmdVelCallBack(const geometry_msgs::msg::TwistStamped::ConstSharedPtr cmd_vel_msg);
+  void CmdVelCallBack(const geometry_msgs::msg::Twist::ConstSharedPtr cmd_vel_msg);
 
   rclcpp::Subscription<livox_ros_driver2::msg::CustomMsg>::SharedPtr livox_scan_sub_;
   rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr livox_imu_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::TwistStamped>::SharedPtr cmd_vel_sub_;
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
 
   rclcpp::Publisher<livox_ros_driver2::msg::CustomMsg>::SharedPtr livox_scan_pub_;
   rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr livox_imu_pub_;
