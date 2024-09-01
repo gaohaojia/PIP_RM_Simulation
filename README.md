@@ -30,7 +30,7 @@ sudo make install
 ```
 5. 克隆代码
 ```bash
-git clone --recursive https://github.com/gaohaojia/PIP_RM_Simulation.git
+git clone https://github.com/gaohaojia/PIP_RM_Simulation.git
 cd PIP_RM_Simulation
 ```
 6. 安装相关依赖
@@ -51,11 +51,11 @@ rosdep install -r --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
 
 ## 注意事项
 1. 本项目对电脑 CPU 和内存要求较高，可通过降低仿真雷达的点云数量或降低运行机器人的数量来改善。
-2. 对应机器人的导航算法需运行到对应的 ROS_DOMAIN_ID，否则会导致通信失败（运行前需设置环境变量 ROS_DOMAIN_ID）。
+2. 对应机器人的导航算法运行前需先设置对应的 ROS_DOMAIN_ID，否则会导致通信失败（即运行前需设置环境变量 ROS_DOMAIN_ID）。
 ```bash
 export ROS_DOMAIN_ID=[id]
 ```
-3. 目前本项目只能发送 livox/lidar 、livox/imu 数据，并接受 cmd_vel 数据，其他数据可自行调整或联系我。
+3. 目前本项目只能发送 livox/lidar 、livox/imu 数据，并接受 cmd_vel 数据，其他数据可自行通过调整yaml文件夹内文件来实现。
 
 ## 调整仿真参数
 可在 simulation_bringup 包中的 launch 文件中调整仿真参数，如地图选择，每个兵种对应的 id，兵种初始位置等等。\
